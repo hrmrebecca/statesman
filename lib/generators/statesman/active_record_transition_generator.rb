@@ -26,11 +26,15 @@ module Statesman
     end
 
     def model_file_name
-      "app/models/#{klass.underscore}.rb"
+      "app/models/#{klean_klass.underscore}.rb"
+    end
+
+    def klean_klass
+      klass.split("::").last.underscore
     end
 
     def table_name
-      klass.underscore.pluralize
+      klean_klass.underscore.pluralize
     end
 
     def parent_id
